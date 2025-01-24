@@ -1,8 +1,9 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
-public class Corredor extends Atleta{
+public class Corredor extends Atleta implements Comparator<Corredor> {
 
     private  int distancia;
     private double mejorTiempo;
@@ -22,12 +23,15 @@ public class Corredor extends Atleta{
 
     @Override
     public void entrenar() {
-
+        if((Math.random()*5)+1 > 3){
+            this.velocidadMaxima+=0.5;
+        }
+        this.sesionesEntrenamiento++;
     }
 
     @Override
     public double obtenerPuntuacion() {
-        return 0;
+        return mejorTiempo;
     }
 
     public void setMejorTiempo(double mejorTiempo) {
@@ -40,5 +44,14 @@ public class Corredor extends Atleta{
 
     public void setVelocidadMaxima(double velocidadMaxima) {
         this.velocidadMaxima = velocidadMaxima;
+    }
+
+    public double getMejorTiempo() {
+        return mejorTiempo;
+    }
+
+    @Override
+    public int compare(Corredor corredor1, Corredor corredor2) {
+        return (int)(corredor1.getMejorTiempo()*100-corredor2.getMejorTiempo()*100);
     }
 }

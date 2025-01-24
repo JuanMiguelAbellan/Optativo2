@@ -2,7 +2,7 @@ package org.example;
 
 import java.time.LocalDate;
 
-public abstract class Atleta implements Competidor{
+public abstract class Atleta implements Competidor, Comparable<Atleta>{
 
     private String nombre;
     private LocalDate fechaNacimieto;
@@ -32,5 +32,8 @@ public abstract class Atleta implements Competidor{
     }
     public void setPais(Pais pais) {
         this.pais = pais;
+    }
+    public int compareTo(Atleta a){
+        return this.nombre.compareTo(a.getNombre());
     }
 }
